@@ -29,6 +29,13 @@ finish-args:
 # If we had external dependencies that weren't included in our SDK, we would list
 # them here.
 modules:
+  - name: template-glib
+    buildsystem: meson
+    sources:
+      - type: git 
+        url: https://gitlab.gnome.org/GNOME/template-glib.git
+        tag: 3.36.1
+
   - name: variables
     buildsystem: meson
     sources:
