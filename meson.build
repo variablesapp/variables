@@ -10,7 +10,7 @@ app_id = 'io.github.variablesapp.variables'
 app_title = 'Variables'
 app_name = 'variables'
 app_developer_name = 'Colin Kiama'
-app_summary = 'Create ed templates for any use-case'
+app_summary = 'Create text-based templates for any use-case'
 app_homepage_url = 'https://github.com/variablesapp/variables'
 app_bug_tracker_url = 'https://www.github.com/variablesapp/variables'
 

@@ -1,6 +1,6 @@
 # Variables
 
-Create ed templates for any use-case
+Create text-based templates for any use-case
 
 ## Build Instructions
 
