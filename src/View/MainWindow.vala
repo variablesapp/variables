@@ -21,11 +21,11 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
         header_bar.title_widget = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         this.set_titlebar (header_bar);
 
-        var root_grid = new Gtk.Grid ();
+        var layout_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-        root_grid.attach (new Variables.TemplatesView (), 0, 0, 1, 1);
-        root_grid.attach (new Variables.TemplateEditor (), 1, 0, 1, 1);
+        layout_box.append (new Variables.TemplatesView ());
+        layout_box.append (new Variables.TemplateEditor ());
 
-        this.set_child (root_grid);
+        this.set_child (layout_box);
     }
 }
