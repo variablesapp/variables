@@ -1,4 +1,9 @@
 public class Variables.Application : Gtk.Application {
+    private static GLib.Once<Vdi.Container> _container;
+    public static unowned Vdi.Container container () {
+        return _container.once (() => { return new Vdi.Container (); });
+    }
+
     public Application () {
         Object (application_id: Constants.APP_ID);
     }

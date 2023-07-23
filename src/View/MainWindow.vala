@@ -23,15 +23,13 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
         this.view_model = new MainViewModel (container);
 
         var header_bar = new Gtk.HeaderBar ();
-        header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
-        header_bar.title_widget = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         this.set_titlebar (header_bar);
 
         var layout_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-        layout_box.append (new Variables.TemplatesView (this));
-        layout_box.append (new Variables.VariablesView (this));
-        layout_box.append (new Variables.TemplateEditor (this));
+        layout_box.append (new Variables.TemplatesView ());
+        layout_box.append (new Variables.VariablesView ());
+        layout_box.append (new Variables.TemplateEditor ());
 
         this.set_child (layout_box);
     }

@@ -1,17 +1,11 @@
 public class Variables.TemplatesView : Gtk.Box {
     public Variables.TemplatesViewModel view_model { get; construct;}
-    public Variables.MainWindow window { get; construct; }
-
-    public TemplatesView (Variables.MainWindow window) {
-        Object (window: window);
-    }
-
     
     construct {
         this.orientation = Gtk.Orientation.VERTICAL;
         this.hexpand = true;
 
-        view_model = (Variables.TemplatesViewModel) window.container.get (typeof(Variables.TemplatesViewModel));
+        view_model = (Variables.TemplatesViewModel) Variables.Application.container().get (typeof(Variables.TemplatesViewModel));
 
         var list_item_factory = new Gtk.SignalListItemFactory ();
         list_item_factory.setup.connect (on_item_setup);

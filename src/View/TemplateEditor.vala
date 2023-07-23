@@ -1,10 +1,4 @@
-public class Variables.TemplateEditor : Gtk.Box {
-    public Variables.MainWindow window { get; construct; }
-
-    public TemplateEditor (Variables.MainWindow window) {
-        Object (window: window);
-    }
-    
+public class Variables.TemplateEditor : Gtk.Box {    
     construct {
         this.orientation = Gtk.Orientation.VERTICAL;
 
