@@ -10,5 +10,6 @@
     "mesonbuild.configureOnOpen": false,
     "mesonbuild.buildFolder": "_build",
     "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
+    "C_Cpp.default.compileCommands": "_build/compile_commands.json",
     "vala.languageServerPath": "${workspaceFolder}/.flatpak/vala-language-server.sh"
 }

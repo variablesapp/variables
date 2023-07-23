@@ -16,14 +16,9 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
     }
 
     construct {
-        var label = new Gtk.Label (_("Hello World"));
-        label.vexpand = true;
-        label.valign = Gtk.Align.CENTER;
-        label.hexpand = true;
-        label.halign = Gtk.Align.CENTER;
+        var layout_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-        var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        layout_box.append (label);
+        layout_box.append (new Variables.TemplateEditor ());
 
         this.set_child (layout_box);
     }
