@@ -36,6 +36,13 @@ modules:
         url: https://gitlab.gnome.org/GNOME/template-glib.git
         tag: 3.36.1
 
+  - name: vadi
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/nahuelwexd/Vadi
+        branch: main
+        
   - name: variables
     buildsystem: meson
     sources:

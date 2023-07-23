@@ -55,6 +55,7 @@ global_dependencies = [
     dependency('gee-0.8'),
     dependency('glib-2.0'),
     dependency('gobject-2.0'),
+    dependency('vadi-0.0')
 ]
 
 # Read meson.build files in specified sub directories

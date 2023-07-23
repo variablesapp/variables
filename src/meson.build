@@ -11,10 +11,12 @@ app_sources = [
         'View/MainWindow.vala',
         'Model/Template.vala',
         'Model/Variable.vala',
+        'ViewModel/MainViewModel.vala',
         'ViewModel/TemplatesViewModel.vala',
         'ViewModel/VariablesViewModel.vala',
         'View/TemplateEditor.vala',
-        'View/TemplatesView.vala'
+        'View/TemplatesView.vala',
+        'View/VariablesView.vala'
     ),
     config_file
 ]
