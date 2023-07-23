@@ -16,10 +16,16 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
     }
 
     construct {
-        var layout_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        var header_bar = new Gtk.HeaderBar ();
+        header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
+        header_bar.title_widget = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        this.set_titlebar (header_bar);
 
-        layout_box.append (new Variables.TemplateEditor ());
+        var root_grid = new Gtk.Grid ();
 
-        this.set_child (layout_box);
+        root_grid.attach (new Variables.TemplatesView (), 0, 0, 1, 1);
+        root_grid.attach (new Variables.TemplateEditor (), 1, 0, 1, 1);
+
+        this.set_child (root_grid);
     }
 }

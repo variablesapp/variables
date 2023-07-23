@@ -1,7 +1,7 @@
 public class Variables.TemplateEditor : Gtk.Box {
     construct {
         this.orientation = Gtk.Orientation.VERTICAL;
-        
+
         var text_entry_stack = new Gtk.Stack () {
             vexpand = true,
             hexpand = true
@@ -14,7 +14,7 @@ public class Variables.TemplateEditor : Gtk.Box {
             stack = text_entry_stack,
             halign = Gtk.Align.CENTER
         };
-
+     
         this.append (stack_switcher);
         this.append (text_entry_stack);
     }

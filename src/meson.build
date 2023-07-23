@@ -13,7 +13,8 @@ app_sources = [
         'Model/Variable.vala',
         'ViewModel/TemplatesViewModel.vala',
         'ViewModel/VariablesViewModel.vala',
-        'View/TemplateEditor.vala'
+        'View/TemplateEditor.vala',
+        'View/TemplatesView.vala'
     ),
     config_file
 ]

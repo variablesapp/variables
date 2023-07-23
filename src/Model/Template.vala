@@ -1,7 +1,16 @@
 public class Variables.Template: GLib.Object {
     /**
-    * Used to subsitiute template values
-    *
+    * The name of the template
     */
-    public Gee.HashMap<string, string> variables { get; set construct; }
+    public string name { get; set; }
+
+    /**
+    * Used to subsitiute template values
+    */
+    public Gee.HashMap<string, string> variables { get; set; }
+
+    /**
+    * The text content of the template
+    **/
+    public string content { get; set; }
 }

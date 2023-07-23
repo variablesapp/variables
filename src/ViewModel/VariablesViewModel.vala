@@ -1,4 +1,4 @@
-public class VariablesViewModel : GLib.Object {
+public class Variables.VariablesViewModel : GLib.Object {
     public GLib.ListStore variables { get; set;}
 
     public void load_variables (Variables.Template template) {
