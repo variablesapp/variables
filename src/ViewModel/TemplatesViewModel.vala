@@ -1,4 +1,4 @@
-public class Variables.TemplatesViewModel: GLib.Object {
+public class Variables.TemplatesViewModel : GLib.Object {
     public GLib.ListStore templates { get; construct; }
     public Gtk.SingleSelection selection_model { get; construct; }
 
