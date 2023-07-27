@@ -1,8 +1,15 @@
-public class Variables.TemplateEditor : Gtk.Box {    
-    construct {
-        this.orientation = Gtk.Orientation.VERTICAL;
+public class Variables.TemplateEditor : Gtk.Widget {    
+    private Gtk.StackSwitcher stack_switcher;
+    private Gtk.Stack text_entry_stack;
+    static construct {
+        set_layout_manager_type (typeof (Gtk.BoxLayout));
+    }
 
-        var text_entry_stack = new Gtk.Stack () {
+    construct {
+        var box_layout = (Gtk.BoxLayout)this.layout_manager;
+        box_layout.orientation = Gtk.Orientation.VERTICAL;
+
+        text_entry_stack = new Gtk.Stack () {
             vexpand = true,
             hexpand = true
         };
@@ -10,13 +17,18 @@ public class Variables.TemplateEditor : Gtk.Box {
         text_entry_stack.add_titled (create_text_area ("Hi, I'm an input"), "Input", "Input");
         text_entry_stack.add_titled (create_text_area ("Hi, I'm an output!"), "Output", "Output");
 
-        var stack_switcher = new Gtk.StackSwitcher () {
+        stack_switcher = new Gtk.StackSwitcher () {
             stack = text_entry_stack,
             halign = Gtk.Align.CENTER
         };
  
-        this.append (stack_switcher);
-        this.append (text_entry_stack);
+        this.stack_switcher.set_parent (this);
+        this.text_entry_stack.set_parent (this);
+    }
+
+    protected override void dispose () {
+        this.stack_switcher.unparent ();
+        this.text_entry_stack.unparent ();
     }
 
     private Gtk.ScrolledWindow create_text_area (string default_text) {
