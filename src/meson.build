@@ -16,7 +16,8 @@ app_sources = [
         'ViewModel/VariablesViewModel.vala',
         'View/TemplateEditor.vala',
         'View/TemplatesView.vala',
-        'View/VariablesView.vala'
+        'View/VariablesView.vala',
+        'Widgets/EditableField.vala'
     ),
     config_file
 ]
