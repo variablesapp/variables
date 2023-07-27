@@ -34,4 +34,11 @@ public class Variables.EditableField : Gtk.Widget {
         this.label_box.set_parent (this);
         this.entry_field.set_parent (this);
     }
+
+    protected override void dispose () {
+        this.label_box.unparent ();
+        this.entry_field.unparent ();
+
+        base.dispose ();
+    }
 }
