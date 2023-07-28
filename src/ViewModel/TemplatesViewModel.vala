@@ -17,7 +17,8 @@ public class Variables.TemplatesViewModel : GLib.Object {
 
         templates.append (new Variables.Template () {
             name = "Demo Template",
-            variables = dummy_variables
+            variables = dummy_variables,
+            content = "This is Demo Content!"
         });
     }
 }

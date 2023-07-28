@@ -1,4 +1,6 @@
-public class Variables.TemplateEditor : Gtk.Widget {    
+public class Variables.TemplateEditorView : Gtk.Widget {    
+    public Variables.TemplateEditorViewModel view_model { get; construct; }
+
     private Gtk.StackSwitcher stack_switcher;
     private Gtk.Stack text_entry_stack;
     static construct {
@@ -9,13 +11,25 @@ public class Variables.TemplateEditor : Gtk.Widget {
         var box_layout = (Gtk.BoxLayout)this.layout_manager;
         box_layout.orientation = Gtk.Orientation.VERTICAL;
 
+        this._view_model = (Variables.TemplateEditorViewModel) Variables.Application.container ().get (typeof(Variables.TemplateEditorViewModel));
+
         text_entry_stack = new Gtk.Stack () {
             vexpand = true,
             hexpand = true
         };
 
-        text_entry_stack.add_titled (create_text_area ("Hi, I'm an input"), "Input", "Input");
-        text_entry_stack.add_titled (create_text_area ("Hi, I'm an output!"), "Output", "Output");
+        var input_text_view_scrolled_window = create_text_area ("Hi, I'm an input");
+        var output_text_view_scrolled_window = create_text_area ("Hi, I'm an output!");
+
+        var input_text_view = (Gtk.TextView) input_text_view_scrolled_window.child;
+        if (this.view_model.model != null && this.view_model.model.content != null) {
+            input_text_view.buffer.text = this.view_model.model.content;
+        }
+        
+        input_text_view.buffer.bind_property ("text", this.view_model.model, "content", GLib.BindingFlags.BIDIRECTIONAL);
+        
+        text_entry_stack.add_titled (input_text_view_scrolled_window, "Input", "Input");
+        text_entry_stack.add_titled (output_text_view_scrolled_window, "Output", "Output");
 
         stack_switcher = new Gtk.StackSwitcher () {
             stack = text_entry_stack,
