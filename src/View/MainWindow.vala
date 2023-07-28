@@ -18,6 +18,8 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
     }
 
     construct {
+        this.set_size_request (640, 480);
+
         var container = Application.container ();
         this.view_model = new MainViewModel (container);
 
@@ -30,8 +32,6 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
         start_paned.position = 180;
 
         end_paned.position = 250;
-
-        //  start_paned.
 
         start_paned.set_start_child (new Variables.TemplatesView ());
         start_paned.set_end_child (end_paned);
