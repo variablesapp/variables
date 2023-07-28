@@ -7,8 +7,9 @@ public class Variables.MainViewModel : GLib.Object {
 
     public MainViewModel (Vdi.Container container) {
         Object (container: container);
-    }
 
+    }
+    
     construct {
         bool is_container_null = container == null;
         print ("Is container null: %s\n", is_container_null ? "true" : "false");
@@ -17,12 +18,19 @@ public class Variables.MainViewModel : GLib.Object {
         this.variables_view_model = new Variables.VariablesViewModel ();
 
         this.templates_view_model.template_selection_changed.connect ((template) => {
+            print ("Template selected!\n");
             this._selected_template = template;
             this.variables_view_model.load_variables (this._selected_template);
         });
 
-        container.bind_instance (typeof (Variables.TemplatesViewModel), templates_view_model);
-        container.bind_instance (typeof (Variables.VariablesViewModel), variables_view_model);
+        if (this.templates_view_model.selection_model.selected_item != null) {
+            print ("Time to load variables!\n");
+            this._selected_template = (Variables.Template) this.templates_view_model.selection_model.selected_item;
+            this.variables_view_model.load_variables (this._selected_template);
+        }
+
+        container.bind_instance (typeof (Variables.TemplatesViewModel), this.templates_view_model);
+        container.bind_instance (typeof (Variables.VariablesViewModel), this.variables_view_model);
     }
 
 }

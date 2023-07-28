@@ -16,15 +16,40 @@ public class Variables.VariablesView : Gtk.Widget {
         this.view_model = (Variables.VariablesViewModel) Variables.Application.container().get (typeof(Variables.VariablesViewModel));        
 
         var list_item_factory = new Gtk.SignalListItemFactory ();
+        list_item_factory.setup.connect (on_item_setup);
+        list_item_factory.bind.connect (on_item_bind);
 
         list_view = new Gtk.ListView (this.view_model.selection_model, list_item_factory);
 
-        example_field = new Variables.EditableField ();
-        example_field.set_parent (this);
+        print ("Variables length: %u\n", this.view_model.selection_model.model.get_n_items ());
+        //  example_field = new Variables.EditableField ();
+        //  example_field.set_parent (this);
+        list_view.set_parent (this);
     }
 
     protected override void dispose () {
         this.list_view.unparent ();
         this.example_field.unparent ();
+    }
+
+    private void on_item_setup (Gtk.ListItem list_item) {
+        print ("Item setup!\n");
+        list_item.child = new Variables.EditableField () {
+            halign = Gtk.Align.START
+        };
+    }
+
+    private void on_item_bind (Gtk.ListItem list_item) {
+        Variables.Variable variable = list_item.item as Variables.Variable;
+        var child = (Variables.EditableField) list_item.child;
+
+        if (variable == null) {
+            child.label_name = "Invalid";
+            child.entry_text = "Invalid entry text";
+            return;
+        }
+
+        child.label_name = variable.name;
+        child.entry_text = variable.value;
     }
 }

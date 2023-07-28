@@ -1,6 +1,5 @@
 public class Variables.MainWindow : Gtk.ApplicationWindow {
     public Variables.MainViewModel view_model { get; construct set; }
-    public Vdi.Container container { get; set; }
 
     public MainWindow (Gtk.Application app) {
         Object (
@@ -19,7 +18,7 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
     }
 
     construct {
-        this.container = new Vdi.Container ();
+        var container = Application.container ();
         this.view_model = new MainViewModel (container);
 
         var header_bar = new Gtk.HeaderBar ();

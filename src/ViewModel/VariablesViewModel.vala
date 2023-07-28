@@ -8,7 +8,7 @@ public class Variables.VariablesViewModel : GLib.Object {
     }
 
     public void load_variables (Variables.Template template) {
-        this.variables.remove_all ();
+        //  this.variables.remove_all ();
 
         template.variables.foreach ((entry) => {
             this.variables.append (new Variables.Variable () {
@@ -16,7 +16,14 @@ public class Variables.VariablesViewModel : GLib.Object {
                 value = entry.value
             });
 
+            print ("Name added: %s\n", entry.key);
+            print ("Value added: %s\n", entry.value);
+
             return true;
         });
+
+
+        print ("Variables length: %u\n", this.selection_model.model.get_n_items ());
+        
     }
 }
