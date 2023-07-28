@@ -24,12 +24,21 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
         var header_bar = new Gtk.HeaderBar ();
         this.set_titlebar (header_bar);
 
-        var layout_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        var start_paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        var end_paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
 
-        layout_box.append (new Variables.TemplatesView ());
-        layout_box.append (new Variables.VariablesView ());
-        layout_box.append (new Variables.TemplateEditor ());
+        start_paned.position = 180;
 
-        this.set_child (layout_box);
+        end_paned.position = 250;
+
+        //  start_paned.
+
+        start_paned.set_start_child (new Variables.TemplatesView ());
+        start_paned.set_end_child (end_paned);
+
+        end_paned.set_start_child (new Variables.VariablesView ());
+        end_paned.set_end_child (new Variables.TemplateEditor ());
+
+        this.set_child (start_paned);
     }
 }
