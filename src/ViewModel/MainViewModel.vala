@@ -12,19 +12,16 @@ public class Variables.MainViewModel : GLib.Object {
     
     construct {
         bool is_container_null = container == null;
-        print ("Is container null: %s\n", is_container_null ? "true" : "false");
 
         this.templates_view_model = new Variables.TemplatesViewModel ();
         this.variables_view_model = new Variables.VariablesViewModel ();
 
         this.templates_view_model.template_selection_changed.connect ((template) => {
-            print ("Template selected!\n");
             this._selected_template = template;
             this.variables_view_model.load_variables (this._selected_template);
         });
 
         if (this.templates_view_model.selection_model.selected_item != null) {
-            print ("Time to load variables!\n");
             this._selected_template = (Variables.Template) this.templates_view_model.selection_model.selected_item;
             this.variables_view_model.load_variables (this._selected_template);
         }

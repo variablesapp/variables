@@ -20,10 +20,6 @@ public class Variables.VariablesView : Gtk.Widget {
         list_item_factory.bind.connect (on_item_bind);
 
         list_view = new Gtk.ListView (this.view_model.selection_model, list_item_factory);
-
-        print ("Variables length: %u\n", this.view_model.selection_model.model.get_n_items ());
-        //  example_field = new Variables.EditableField ();
-        //  example_field.set_parent (this);
         list_view.set_parent (this);
     }
 
@@ -33,7 +29,6 @@ public class Variables.VariablesView : Gtk.Widget {
     }
 
     private void on_item_setup (Gtk.ListItem list_item) {
-        print ("Item setup!\n");
         list_item.child = new Variables.EditableField () {
             halign = Gtk.Align.START
         };

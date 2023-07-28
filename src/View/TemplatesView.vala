@@ -31,7 +31,6 @@ public class Variables.TemplatesView : Gtk.Widget {
     }
 
     private void on_item_setup (Gtk.ListItem list_item) {
-        print ("Templates item setup\n");
         list_item.child = new Gtk.Label (null) {
             halign = Gtk.Align.START
         };

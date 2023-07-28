@@ -14,7 +14,7 @@ public class Variables.TemplatesViewModel : GLib.Object {
         var dummy_variables = new Gee.HashMap<string, string> ();
         dummy_variables["name"] = "Colin";
         dummy_variables["email"] = "nospamplz@gmail.com";
-        
+
         templates.append (new Variables.Template () {
             name = "Demo Template",
             variables = dummy_variables
