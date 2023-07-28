@@ -6,8 +6,11 @@ public class Variables.TemplatesViewModel : GLib.Object {
 
     construct {
         templates = new GLib.ListStore (typeof (Variables.Template));
-        this.selection_model = new Gtk.SingleSelection (templates);
-        this.selection_model.notify["selected_item"].connect ((spec) => {
+        this.selection_model = new Gtk.SingleSelection (templates) {
+            autoselect = true
+        };
+
+        this.selection_model.notify["selected-item"].connect ((spec) => {
             this.template_selection_changed ((Variables.Template)this.selection_model.selected_item);
         });
 
@@ -20,5 +23,18 @@ public class Variables.TemplatesViewModel : GLib.Object {
             variables = dummy_variables,
             content = "This is Demo Content!"
         });
+
+        var other_variables = new Gee.HashMap<string, string> ();
+        other_variables["title"] = "Hello World";
+
+        templates.append (new Variables.Template () {
+            name = "Second Template",
+            variables = other_variables,
+            content ="Other content"
+        });
+
+        if (this.templates.get_n_items () < 1) {
+            return;
+        }
     }
 }

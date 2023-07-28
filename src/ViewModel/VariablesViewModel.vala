@@ -8,6 +8,8 @@ public class Variables.VariablesViewModel : GLib.Object {
     }
 
     public void load_variables (Variables.Template template) {
+        this.variables.remove_all ();
+
         template.variables.foreach ((entry) => {
             this.variables.append (new Variables.Variable () {
                 name = entry.key,

@@ -22,11 +22,10 @@ public class Variables.TemplateEditorView : Gtk.Widget {
         var output_text_view_scrolled_window = create_text_area ("Hi, I'm an output!");
 
         var input_text_view = (Gtk.TextView) input_text_view_scrolled_window.child;
-        if (this.view_model.model != null && this.view_model.model.content != null) {
-            input_text_view.buffer.text = this.view_model.model.content;
-        }
+        input_text_view.buffer.text = this.view_model.content ?? input_text_view.buffer.text;
         
-        input_text_view.buffer.bind_property ("text", this.view_model.model, "content", GLib.BindingFlags.BIDIRECTIONAL);
+        
+        input_text_view.buffer.bind_property ("text", this.view_model, "content", GLib.BindingFlags.BIDIRECTIONAL);
         
         text_entry_stack.add_titled (input_text_view_scrolled_window, "Input", "Input");
         text_entry_stack.add_titled (output_text_view_scrolled_window, "Output", "Output");
