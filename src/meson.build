@@ -2,7 +2,8 @@ app_dependencies = [
     global_dependencies,
     dependency('gtk4'),
     dependency('granite-7'),
-    dependency('template-glib-1.0')
+    dependency('template-glib-1.0'),
+    dependency('vadi-0.0')
 ]
 
 app_sources = [
