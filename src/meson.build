@@ -12,6 +12,7 @@ app_sources = [
         'View/MainWindow.vala',
         'Model/Template.vala',
         'Model/Variable.vala',
+        'Services/OutputService.vala',
         'ViewModel/MainViewModel.vala',
         'ViewModel/TemplatesViewModel.vala',
         'ViewModel/VariablesViewModel.vala',

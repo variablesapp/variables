@@ -13,7 +13,7 @@ public class Variables.VariablesView : Gtk.Widget {
         box_layout.orientation = Gtk.Orientation.VERTICAL;
 
         this.hexpand = true;
-        this.view_model = (Variables.VariablesViewModel) Variables.Application.container().get (typeof(Variables.VariablesViewModel));        
+        this.view_model = (Variables.VariablesViewModel) Variables.Application.container.get (typeof(Variables.VariablesViewModel));        
 
         var list_item_factory = new Gtk.SignalListItemFactory ();
         list_item_factory.setup.connect (on_item_setup);

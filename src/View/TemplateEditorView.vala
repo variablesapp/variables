@@ -11,7 +11,7 @@ public class Variables.TemplateEditorView : Gtk.Widget {
         var box_layout = (Gtk.BoxLayout)this.layout_manager;
         box_layout.orientation = Gtk.Orientation.VERTICAL;
 
-        this._view_model = (Variables.TemplateEditorViewModel) Variables.Application.container ().get (typeof(Variables.TemplateEditorViewModel));
+        this._view_model = (Variables.TemplateEditorViewModel) Variables.Application.container.get (typeof(Variables.TemplateEditorViewModel));
 
         text_entry_stack = new Gtk.Stack () {
             vexpand = true,

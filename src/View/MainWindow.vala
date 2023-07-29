@@ -20,8 +20,7 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
     construct {
         this.set_size_request (640, 480);
 
-        var container = Application.container ();
-        this.view_model = new MainViewModel (container);
+        this.view_model = new MainViewModel (Variables.Application.container);
 
         var header_bar = new Gtk.HeaderBar ();
         this.set_titlebar (header_bar);
