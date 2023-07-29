@@ -14,7 +14,7 @@ public class Variables.TemplatesViewModel : GLib.Object {
             this.template_selection_changed ((Variables.Template)this.selection_model.selected_item);
         });
 
-        var dummy_variables = new Gee.HashMap<string, string> ();
+        var dummy_variables = new GLib.HashTable<string, string> (str_hash, str_equal);
         dummy_variables["name"] = "Colin";
         dummy_variables["email"] = "nospamplz@gmail.com";
 
@@ -24,13 +24,13 @@ public class Variables.TemplatesViewModel : GLib.Object {
             content = "This is Demo Content!"
         });
 
-        var other_variables = new Gee.HashMap<string, string> ();
+        var other_variables = new GLib.HashTable<string, string> (str_hash, str_equal);
         other_variables["title"] = "Hello World";
 
         templates.append (new Variables.Template () {
             name = "Second Template",
             variables = other_variables,
-            content ="Other content"
+            content = "Other content"
         });
 
         if (this.templates.get_n_items () < 1) {
