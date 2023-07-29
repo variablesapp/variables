@@ -10,13 +10,11 @@ public class Variables.VariablesViewModel : GLib.Object {
     public void load_variables (Variables.Template template) {
         this.variables.remove_all ();
 
-        template.variables.foreach ((entry) => {
+        template.variables.foreach ((key, value) => {
             this.variables.append (new Variables.Variable () {
-                name = entry.key,
-                value = entry.value
+                name = key,
+                value = value
             });
-
-            return true;
         });
     }
 }

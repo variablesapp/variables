@@ -1,28 +1,55 @@
 public class Variables.TemplateViewModel : GLib.Object {
     public Variables.Template model { get; set; }
 
-    public string content {
+    // Two way bind
+    public string input_content {
         get {
-            return this._content;
+            return this._input_content;
         }
 
         construct set {
-            if (value != this._content) {
-                this._content = value;
-                model.content = this._content;
+            if (value != this._input_content) {
+                this._input_content = value;
+                model.content = this._input_content;
             }
         }
     }
 
-    private string _content;
+    public string output_content { get; set; }
 
-    construct {
-        this._content = "";
+    public string current_view_name {
+        get {
+            return this._current_view_name;
+        }
+
+        set {
+            print ("Set current view name: %s\n", value);
+            if (value != this._current_view_name) {
+
+                if (value == Config.TEMPLATE_OUTPUT_PAGE_NAME) {
+                    print ("About to update output content\n");
+                    this.output_content = this._output_service.process_template (model);
+                }
+
+                this._current_view_name = value;
+            }
+        }
     }
 
+    private string _input_content;
+    private string _current_view_name;
+    private Variables.OutputService _output_service;
+
+    construct {
+        this._current_view_name = Config.TEMPLATE_INPUT_PAGE_NAME;
+        this._input_content = "";
+        this._output_service = new Variables.OutputService ();
+    }
 
     public void load_template (Variables.Template template) {
         this.model = template;
-        this.content = this.model.content;
+        this.output_content = "";
+        this.current_view_name = Config.TEMPLATE_INPUT_PAGE_NAME;
+        this.input_content = this.model.content;
     }
 }

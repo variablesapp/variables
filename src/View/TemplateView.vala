@@ -15,20 +15,21 @@ public class Variables.TemplateView : Gtk.Widget {
 
         text_entry_stack = new Gtk.Stack () {
             vexpand = true,
-            hexpand = true
+            hexpand = true,
+            transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT,
         };
 
-        var input_text_view_scrolled_window = create_text_area ("Hi, I'm an input");
-        var output_text_view_scrolled_window = create_text_area ("Hi, I'm an output!");
-
-        var input_text_view = (Gtk.TextView) input_text_view_scrolled_window.child;
-        input_text_view.buffer.text = this.view_model.content ?? input_text_view.buffer.text;
+        var input_text_view = create_text_view ();
+        input_text_view.buffer.text = this.view_model.input_content ?? input_text_view.buffer.text;
         
+        var output_text_view = create_text_view ();
         
-        input_text_view.buffer.bind_property ("text", this.view_model, "content", GLib.BindingFlags.BIDIRECTIONAL);
+        this.view_model.bind_property ("current-view-name", text_entry_stack, "visible-child-name", GLib.BindingFlags.BIDIRECTIONAL);
+        this.view_model.bind_property ("input-content", input_text_view.buffer, "text", GLib.BindingFlags.BIDIRECTIONAL);
+        this.view_model.bind_property ("output-content", output_text_view.buffer, "text", GLib.BindingFlags.DEFAULT);
         
-        text_entry_stack.add_titled (input_text_view_scrolled_window, "Input", "Input");
-        text_entry_stack.add_titled (output_text_view_scrolled_window, "Output", "Output");
+        text_entry_stack.add_titled (scroll_wrap_widget(input_text_view), Config.TEMPLATE_INPUT_PAGE_NAME, "Input");
+        text_entry_stack.add_titled (scroll_wrap_widget(output_text_view), Config.TEMPLATE_OUTPUT_PAGE_NAME, "Output");
 
         stack_switcher = new Gtk.StackSwitcher () {
             stack = text_entry_stack,
@@ -44,16 +45,18 @@ public class Variables.TemplateView : Gtk.Widget {
         this.text_entry_stack.unparent ();
     }
 
-    private Gtk.ScrolledWindow create_text_area (string default_text) {
+    private Gtk.TextView create_text_view () {
         var text_view = new Gtk.TextView () {
             wrap_mode = Gtk.WrapMode.WORD_CHAR
         };
 
-        text_view.buffer.text = default_text;
+        return text_view;
+    }
 
+    private Gtk.ScrolledWindow scroll_wrap_widget (Gtk.Widget widget) {
         var scroll_wrapper = new Gtk.ScrolledWindow () {
             hscrollbar_policy = Gtk.PolicyType.NEVER,
-            child = text_view,
+            child = widget,
             vexpand = true,
             hexpand = true
         };

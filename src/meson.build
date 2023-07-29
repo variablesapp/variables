@@ -8,7 +8,8 @@ app_dependencies = [
 
 app_sources = [
     files(
-        'Application.vala', 
+        'Application.vala',
+        'Constants/Config.vala',
         'View/MainWindow.vala',
         'Model/Template.vala',
         'Model/Variable.vala',

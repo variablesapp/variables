@@ -21,7 +21,7 @@ public class Variables.TemplatesViewModel : GLib.Object {
         templates.append (new Variables.Template () {
             name = "Demo Template",
             variables = dummy_variables,
-            content = "This is Demo Content!"
+            content = "User Info\n\nName: {{name}}\nemail: {{email}}\n"
         });
 
         var other_variables = new GLib.HashTable<string, string> (str_hash, str_equal);
