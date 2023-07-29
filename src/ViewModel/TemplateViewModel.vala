@@ -1,4 +1,4 @@
-public class Variables.TemplateEditorViewModel : GLib.Object {
+public class Variables.TemplateViewModel : GLib.Object {
     public Variables.Template model { get; set; }
 
     public string content {

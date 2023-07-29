@@ -14,10 +14,10 @@ app_sources = [
         'Model/Variable.vala',
         'Services/OutputService.vala',
         'ViewModel/MainViewModel.vala',
+        'ViewModel/TemplateViewModel.vala',
         'ViewModel/TemplatesViewModel.vala',
         'ViewModel/VariablesViewModel.vala',
-        'ViewModel/TemplateEditorViewModel.vala',
-        'View/TemplateEditorView.vala',
+        'View/TemplateView.vala',
         'View/TemplatesView.vala',
         'View/VariablesView.vala',
         'Widgets/EditableField.vala'

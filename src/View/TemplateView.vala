@@ -1,5 +1,5 @@
-public class Variables.TemplateEditorView : Gtk.Widget {    
-    public Variables.TemplateEditorViewModel view_model { get; construct; }
+public class Variables.TemplateView : Gtk.Widget {    
+    public Variables.TemplateViewModel view_model { get; construct; }
 
     private Gtk.StackSwitcher stack_switcher;
     private Gtk.Stack text_entry_stack;
@@ -11,7 +11,7 @@ public class Variables.TemplateEditorView : Gtk.Widget {
         var box_layout = (Gtk.BoxLayout)this.layout_manager;
         box_layout.orientation = Gtk.Orientation.VERTICAL;
 
-        this._view_model = (Variables.TemplateEditorViewModel) Variables.Application.container.get (typeof(Variables.TemplateEditorViewModel));
+        this._view_model = (Variables.TemplateViewModel) Variables.Application.container.get (typeof(Variables.TemplateViewModel));
 
         text_entry_stack = new Gtk.Stack () {
             vexpand = true,

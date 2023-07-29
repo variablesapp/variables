@@ -36,7 +36,7 @@ public class Variables.MainWindow : Gtk.ApplicationWindow {
         start_paned.set_end_child (end_paned);
 
         end_paned.set_start_child (new Variables.VariablesView ());
-        end_paned.set_end_child (new Variables.TemplateEditorView ());
+        end_paned.set_end_child (new Variables.TemplateView ());
 
         this.set_child (start_paned);
     }
