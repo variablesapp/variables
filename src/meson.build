@@ -10,6 +10,7 @@ app_sources = [
     files(
         'Application.vala',
         'Constants/Config.vala',
+        'Enums/EditableFieldChangeType.vala',
         'Helpers/Debouncer.vala',
         'View/MainWindow.vala',
         'Model/Template.vala',

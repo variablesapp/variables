@@ -4,8 +4,7 @@ public class Variables.EditableField : Gtk.Widget {
     public bool is_label_editable { get; construct set; }
     public Gee.ArrayList<Gtk.Button> additional_buttons { get; construct; }
 
-    public signal void changed ();
-
+    public signal void changed (Variables.EditableFieldChangeType change_type, string new_content);
 
     private Gtk.EditableLabel editable_label;
     private Gtk.Entry entry_field;
@@ -34,8 +33,8 @@ public class Variables.EditableField : Gtk.Widget {
         this.editable_label.bind_property ("text", this, "label-name", GLib.BindingFlags.BIDIRECTIONAL);
         this.entry_field.bind_property ("text", this, "entry-text", GLib.BindingFlags.BIDIRECTIONAL);
 
-        this.editable_label.changed.connect ( () => this.changed ());
-        this.entry_field.changed.connect (() => this.changed ());
+        this.editable_label.changed.connect ( () => this.changed (Variables.EditableFieldChangeType.Name, this.editable_label.text));
+        this.entry_field.changed.connect (() => this.changed (Variables.EditableFieldChangeType.Value, this.entry_field.text));
 
         this.edit_button = new Gtk.Button.from_icon_name ("edit-symbolic") {
             halign = Gtk.Align.START

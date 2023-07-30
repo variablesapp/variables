@@ -23,11 +23,9 @@ public class Variables.TemplateViewModel : GLib.Object {
         }
 
         set {
-            print ("Set current view name: %s\n", value);
             if (value != this._current_view_name) {
 
                 if (value == Config.TEMPLATE_OUTPUT_PAGE_NAME) {
-                    print ("About to update output content\n");
                     this.output_content = this._output_service.process_template (model);
                 }
 

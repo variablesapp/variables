@@ -1,4 +1,5 @@
 public class Variables.VariablesViewModel : GLib.Object {
+    public Variables.Template template;
     public GLib.ListStore variables { get; construct; }
     public Gtk.NoSelection selection_model { get; construct; }
 
@@ -10,6 +11,8 @@ public class Variables.VariablesViewModel : GLib.Object {
     }
 
     public void load_variables (Variables.Template template) {
+        this.template = template;
+
         this.variables.remove_all ();
 
         template.variables.foreach ((entry) => {
@@ -20,5 +23,25 @@ public class Variables.VariablesViewModel : GLib.Object {
 
             return true;
         });
+    }
+
+    public void update_variable (Variables.EditableFieldChangeType change_type, uint changed_position, string content) {
+        var variable = (Variables.Variable)variables.get_item (changed_position);
+        switch (change_type) {
+            case Variables.EditableFieldChangeType.Name:
+                string old_value;
+                template.variables.unset (variable.name, out old_value);
+                template.variables[content] = old_value;
+                variable.name = content;
+                break;
+            case Variables.EditableFieldChangeType.Value:
+                template.variables[variable.name] = content;
+                variable.value = content;
+                break;
+        }
+
+        template.variables[variable.name] = variable.value;
+
+        this.variable_property_changed ();
     }
 }

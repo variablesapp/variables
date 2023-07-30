@@ -8,11 +8,13 @@ public class Variables.Debouncer : GLib.Object {
     public delegate void DebounceHandler ();
 
     private static GLib.Once<Variables.Debouncer> _instance;
-    private Gee.HashMap<string, TimeoutSource> timeout_source_map;
+    private Gee.HashMap<string, TimeoutSource> _timeout_source_map;
 
     construct {
-        timeout_source_map = new Gee.HashMap<string, TimeoutSource> ();
+        this._timeout_source_map = new Gee.HashMap<string, TimeoutSource> ();
     }
+
+    private Debouncer () {}
 
     /**
     * Delays a function from being called
@@ -25,12 +27,12 @@ public class Variables.Debouncer : GLib.Object {
         this.cancel (key);
 
         var timeout_source = new TimeoutSource (delay);
-        timeout_source_map[key] = timeout_source;
+        this._timeout_source_map[key] = timeout_source;
 
         timeout_source.set_callback (() => {
             function ();
-            if (timeout_source_map[key] != null) {
-                timeout_source_map.unset (key);
+            if (this._timeout_source_map[key] != null) {
+                this._timeout_source_map.unset (key);
             }
             return Source.REMOVE;
         });
@@ -47,25 +49,18 @@ public class Variables.Debouncer : GLib.Object {
     * @param key Used to identify the function. 
     */
     public bool cancel (string key) {
-        print ("Hashtable length: %d\n", timeout_source_map.keys.size);
-        print ("Hashtable:\n");
-        this.timeout_source_map.foreach ((entry) => {
-            print ("Key: %s\n", entry.key);
+        this._timeout_source_map.foreach ((entry) => {
             return true;
         });
 
-        if (timeout_source_map[key] != null) {
-            print ("Timeout exists!\n");
-            var doomed_timeout_source = timeout_source_map[key];
-            timeout_source_map.unset (key);
+        if (_timeout_source_map[key] != null) {
+            var doomed_timeout_source = this._timeout_source_map[key];
+            this._timeout_source_map.unset (key);
             doomed_timeout_source.destroy ();
             
             return true;
         }
         
-        print ("Timeout doesn't exist!\n");
         return false;
     }
-
-    private Debouncer () {}
 }
