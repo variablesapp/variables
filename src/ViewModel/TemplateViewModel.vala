@@ -52,4 +52,14 @@ public class Variables.TemplateViewModel : GLib.Object {
         this.current_view_name = Config.TEMPLATE_INPUT_PAGE_NAME;
         this.input_content = this.model.content;
     }
+
+    public void request_output_update () {
+        if (this._current_view_name == Config.TEMPLATE_INPUT_PAGE_NAME) {
+            return;
+        }
+
+        Variables.Debouncer.instance.debounce (() => {
+            this.output_content = this._output_service.process_template (model);
+        }, 300, Config.OUTPUT_UPDATE_DEBOUNCE_KEY);
+    }
 }

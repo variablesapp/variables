@@ -52,6 +52,7 @@ config_file = configure_file(
 
 # Define common dependencies used in all targets
 global_dependencies = [
+    dependency('gee-0.8'),
     dependency('glib-2.0'),
     dependency('gobject-2.0'),
 ]

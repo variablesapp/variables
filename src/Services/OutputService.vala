@@ -11,9 +11,10 @@ public class Variables.OutputService : GLib.Object {
             print ("Template data content: %s", template_data.content);
             var scope = new global::Template.Scope ();
 
-            template_data.variables.foreach ((key, value) => {
-                var symbol = scope.get (key);
-                symbol.assign_string (value);
+            template_data.variables.foreach ((entry) => {
+                var symbol = scope.get (entry.key);
+                symbol.assign_string (entry.value);
+                return true;
             });
 
             string expanded = template.expand_string (scope);

@@ -13,7 +13,7 @@ public class Variables.VariablesView : Gtk.Widget {
         box_layout.orientation = Gtk.Orientation.VERTICAL;
 
         this.hexpand = true;
-        this.view_model = (Variables.VariablesViewModel) Variables.Application.container.get (typeof(Variables.VariablesViewModel));        
+        this.view_model = (Variables.VariablesViewModel) Variables.Application.container.get (typeof (Variables.VariablesViewModel));
 
         var list_item_factory = new Gtk.SignalListItemFactory ();
         list_item_factory.setup.connect (on_item_setup);
@@ -43,8 +43,15 @@ public class Variables.VariablesView : Gtk.Widget {
             child.entry_text = "Invalid entry text";
             return;
         }
-
+        
         child.label_name = variable.name;
         child.entry_text = variable.value;
+
+        //  list_item.item.bind_property ("name", child, "label-name", GLib.BindingFlags.BIDIRECTIONAL);
+        //  list_item.item.bind_property ("value", child, "entry-text", GLib.BindingFlags.BIDIRECTIONAL);
+        child.bind_property ("label-name", list_item.item, "name", GLib.BindingFlags.DEFAULT);
+        child.bind_property ("entry-text", list_item.item, "value", GLib.BindingFlags.DEFAULT);
+
+        child.changed.connect (() => this.view_model.variable_property_changed ());
     }
 }

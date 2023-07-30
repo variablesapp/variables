@@ -14,7 +14,7 @@ public class Variables.TemplatesView : Gtk.Widget {
 
         this.hexpand = true;
 
-        view_model = (Variables.TemplatesViewModel) Variables.Application.container.get (typeof(Variables.TemplatesViewModel));
+        view_model = (Variables.TemplatesViewModel) Variables.Application.container.get (typeof (Variables.TemplatesViewModel));
 
         var list_item_factory = new Gtk.SignalListItemFactory ();
         list_item_factory.setup.connect (on_item_setup);
@@ -38,7 +38,7 @@ public class Variables.TemplatesView : Gtk.Widget {
 
     protected override void dispose () {
         page_title_label.unparent ();
-        templates_list_view.unparent();
+        templates_list_view.unparent ();
 
         base.dispose ();
     }
