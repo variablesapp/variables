@@ -18,6 +18,7 @@ public class Variables.VariablesView : Gtk.Widget {
         var list_item_factory = new Gtk.SignalListItemFactory ();
         list_item_factory.setup.connect (on_item_setup);
         list_item_factory.bind.connect (on_item_bind);
+        list_item_factory.unbind.connect (on_item_unbind);
 
         list_view = new Gtk.ListView (this.view_model.selection_model, list_item_factory);
         list_view.set_parent (this);
@@ -47,8 +48,13 @@ public class Variables.VariablesView : Gtk.Widget {
         child.label_name = variable.name;
         child.entry_text = variable.value;
 
-        child.changed.connect ((change_type, new_content) => {
+        child.changed_handler = child.changed.connect ((change_type, new_content) => {
             this.view_model.update_variable (change_type, list_item.get_position (), new_content);
         });
+    }
+
+    private void on_item_unbind (Gtk.ListItem list_item) {
+        var child = (Variables.EditableField) list_item.child;
+        child.disconnect_changed_handler ();
     }
 }

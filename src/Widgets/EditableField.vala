@@ -4,7 +4,9 @@ public class Variables.EditableField : Gtk.Widget {
     public bool is_label_editable { get; construct set; }
     public Gee.ArrayList<Gtk.Button> additional_buttons { get; construct; }
 
+    //  public delegate void EditableFieldChangeHandler (Variables.EditableFieldChangeType change_type, string new_content);
     public signal void changed (Variables.EditableFieldChangeType change_type, string new_content);
+    public ulong changed_handler { get; set; }
 
     private Gtk.EditableLabel editable_label;
     private Gtk.Entry entry_field;
@@ -48,6 +50,13 @@ public class Variables.EditableField : Gtk.Widget {
 
         this.label_box.set_parent (this);
         this.entry_field.set_parent (this);
+    }
+
+    public void disconnect_changed_handler () {
+        if (changed_handler != 0) {
+            this.disconnect (changed_handler);
+            changed_handler = 0;
+        }
     }
 
     public void add_extra_button (Gtk.Button button) {
