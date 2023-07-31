@@ -3,7 +3,7 @@ public class Variables.TemplatesView : Gtk.Widget {
 
     private Gtk.Label page_title_label;
     private Gtk.ListView templates_list_view;
-
+    
     static construct {
         set_layout_manager_type (typeof (Gtk.BoxLayout));
     }
@@ -14,11 +14,13 @@ public class Variables.TemplatesView : Gtk.Widget {
 
         this.hexpand = true;
 
-        view_model = (Variables.TemplatesViewModel) Variables.Application.container.get (typeof (Variables.TemplatesViewModel));
+        this.view_model = (Variables.TemplatesViewModel) Variables.Application.container.get (typeof (Variables.TemplatesViewModel));
 
         var list_item_factory = new Gtk.SignalListItemFactory ();
         list_item_factory.setup.connect (on_item_setup);
         list_item_factory.bind.connect (on_item_bind);
+        list_item_factory.unbind.connect (on_item_unbind);
+        list_item_factory.teardown.connect (on_item_teardown);
 
         page_title_label = new Gtk.Label ("Templates") {
             halign = Gtk.Align.START
@@ -31,8 +33,9 @@ public class Variables.TemplatesView : Gtk.Widget {
     }
 
     private void on_item_setup (Gtk.ListItem list_item) {
-        list_item.child = new Gtk.Label (null) {
-            halign = Gtk.Align.START
+        list_item.child = new Gtk.EditableLabel ("") {
+            halign = Gtk.Align.START,
+            editable = false
         };
     }
 
@@ -45,13 +48,16 @@ public class Variables.TemplatesView : Gtk.Widget {
 
     private void on_item_bind (Gtk.ListItem list_item) {
         Variables.Template template = list_item.item as Variables.Template;
-        Gtk.Label child = (Gtk.Label) list_item.child;
+        Gtk.EditableLabel child = (Gtk.EditableLabel) list_item.child;
+        child.text = template.name;
+    }
 
-        if (template == null) {
-            child.label = "Invalid Template Item";
-            return;
-        }
+    private void on_item_unbind (Gtk.ListItem list_item) {
+        Gtk.EditableLabel child = (Gtk.EditableLabel) list_item.child;
+        child.text = "";
+    }
 
-        child.label = template.name;
+    private void on_item_teardown (Gtk.ListItem list_item) {
+        list_item.child = null;
     }
 }

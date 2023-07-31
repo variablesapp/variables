@@ -63,6 +63,5 @@ public class Variables.VariablesView : Gtk.Widget {
 
     private void on_item_teardown (Gtk.ListItem list_item) {
         list_item.child = null;
-        print ("Tear down complete!\n");
     }
 }
