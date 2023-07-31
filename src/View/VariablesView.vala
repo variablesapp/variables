@@ -19,6 +19,7 @@ public class Variables.VariablesView : Gtk.Widget {
         list_item_factory.setup.connect (on_item_setup);
         list_item_factory.bind.connect (on_item_bind);
         list_item_factory.unbind.connect (on_item_unbind);
+        list_item_factory.teardown.connect (on_item_teardown);
 
         list_view = new Gtk.ListView (this.view_model.selection_model, list_item_factory);
         list_view.set_parent (this);
@@ -56,5 +57,12 @@ public class Variables.VariablesView : Gtk.Widget {
     private void on_item_unbind (Gtk.ListItem list_item) {
         var child = (Variables.EditableField) list_item.child;
         child.disconnect_changed_handler ();
+        child.label_name = "";
+        child.entry_text = "";
+    }
+
+    private void on_item_teardown (Gtk.ListItem list_item) {
+        list_item.child = null;
+        print ("Tear down complete!\n");
     }
 }
