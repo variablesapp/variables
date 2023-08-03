@@ -57,10 +57,10 @@ public class Variables.Debouncer : GLib.Object {
             var doomed_timeout_source = this._timeout_source_map[key];
             this._timeout_source_map.unset (key);
             doomed_timeout_source.destroy ();
-            
+
             return true;
         }
-        
+
         return false;
     }
 }

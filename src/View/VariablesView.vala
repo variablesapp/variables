@@ -45,7 +45,7 @@ public class Variables.VariablesView : Gtk.Widget {
             child.entry_text = "Invalid entry text";
             return;
         }
-        
+
         child.label_name = variable.name;
         child.entry_text = variable.value;
 

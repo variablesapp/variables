@@ -3,7 +3,7 @@ public class Variables.TemplatesView : Gtk.Widget {
 
     private Gtk.Label page_title_label;
     private Gtk.ListView templates_list_view;
-    
+
     static construct {
         set_layout_manager_type (typeof (Gtk.BoxLayout));
     }
