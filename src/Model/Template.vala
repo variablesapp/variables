@@ -7,10 +7,12 @@ public class Variables.Template: GLib.Object {
     /**
     * Used to subsitiute template values
     */
-    public Gee.HashMap<string, string> variables { get; set; }
+    public Gee.ArrayList<Variables.Variable> variables { get; set; }
 
     /**
     * The text content of the template
     **/
     public string content { get; set; }
+
+    public int id { get; construct; }
 }

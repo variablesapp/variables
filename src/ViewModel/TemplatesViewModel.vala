@@ -14,9 +14,20 @@ public class Variables.TemplatesViewModel : GLib.Object {
             this.template_selection_changed ((Variables.Template)this.selection_model.selected_item);
         });
 
-        var dummy_variables = new Gee.HashMap<string, string> ();
-        dummy_variables["name"] = "Colin";
-        dummy_variables["email"] = "nospamplz@gmail.com";
+        //  var dummy_variables = new Gee.HashMap<string, string> ();
+        //  dummy_variables["name"] = "Colin";
+        //  dummy_variables["email"] = "nospamplz@gmail.com";
+
+        var dummy_variables = new Gee.ArrayList<Variables.Variable>.wrap ({
+            new Variables.Variable () {
+                name = "name",
+                value = "Colin"
+            },
+            new Variables.Variable () {
+                name = "email",
+                value = "nospamplz@gmail.com"
+            } 
+        });
 
         templates.append (new Variables.Template () {
             name = "Demo Template",
@@ -24,8 +35,15 @@ public class Variables.TemplatesViewModel : GLib.Object {
             content = "User Info\n\nName: {{name}}\nemail: {{email}}\n"
         });
 
-        var other_variables = new Gee.HashMap<string, string> ();
-        other_variables["title"] = "Hello World";
+        //  var other_variables = new Gee.HashMap<string, string> ();
+        //  other_variables["title"] = "Hello World";
+
+        var other_variables = new Gee.ArrayList<Variables.Variable>.wrap ({
+            new Variables.Variable () { 
+                name = "title",
+                value = "Hello World"
+            },
+        });
 
         templates.append (new Variables.Template () {
             name = "Second Template",

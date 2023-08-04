@@ -14,4 +14,6 @@ public class Variables.Variable: GLib.Object {
     * @see Variables.Variable.name
     */
     public string value { get; set construct; }
+
+    public int id { get; construct; }
 }

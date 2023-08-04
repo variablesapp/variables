@@ -11,7 +11,7 @@ public class Variables.OutputService : GLib.Object {
             var scope = new global::Template.Scope ();
 
             template_data.variables.foreach ((entry) => {
-                var symbol = scope.get (entry.key);
+                var symbol = scope.get (entry.name);
                 symbol.assign_string (entry.value);
                 return true;
             });

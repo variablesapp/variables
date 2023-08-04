@@ -17,7 +17,7 @@ public class Variables.VariablesViewModel : GLib.Object {
 
         template.variables.foreach ((entry) => {
             this.variables.append (new Variables.Variable () {
-                name = entry.key,
+                name = entry.name,
                 value = entry.value,
             });
 
@@ -29,18 +29,14 @@ public class Variables.VariablesViewModel : GLib.Object {
         var variable = (Variables.Variable)variables.get_item (changed_position);
         switch (change_type) {
             case Variables.EditableFieldChangeType.Name:
-                string old_value;
-                template.variables.unset (variable.name, out old_value);
-                template.variables[content] = old_value;
+                template.variables[(int)changed_position].name = content;
                 variable.name = content;
                 break;
             case Variables.EditableFieldChangeType.Value:
-                template.variables[variable.name] = content;
+                template.variables[(int)changed_position].value = content;
                 variable.value = content;
                 break;
         }
-
-        template.variables[variable.name] = variable.value;
 
         this.variable_property_changed ();
     }
