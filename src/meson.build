@@ -4,7 +4,7 @@ app_dependencies = [
     dependency('granite-7'),
     dependency('template-glib-1.0'),
     dependency('vadi-0.0'),
-    dependency('sqlite3', version: '>= 3.5.9'),
+    dependency('libgda-6.0'),
 ]
 
 app_sources = [
@@ -26,8 +26,6 @@ app_sources = [
         'View/TemplatesView.vala',
         'View/VariablesView.vala',
         'Widgets/EditableField.vala',
-        'db/DatabaseTable.vala',
-        'db/TemplateTable.vala',
     ),
     config_file
 ]

@@ -42,7 +42,14 @@ modules:
       - type: git
         url: https://github.com/nahuelwexd/Vadi
         branch: main
-        
+  
+  - name: libgda
+    buildsystem: meson
+    sources:
+    - type: git
+      url: https://gitlab.gnome.org/GNOME/libgda
+      tag: LIBGDA_6_0_0
+
   - name: variables
     buildsystem: meson
     sources:
