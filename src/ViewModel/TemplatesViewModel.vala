@@ -26,7 +26,7 @@ public class Variables.TemplatesViewModel : GLib.Object {
             new Variables.Variable () {
                 name = "email",
                 value = "nospamplz@gmail.com"
-            } 
+            }
         });
 
         templates.append (new Variables.Template () {
@@ -39,7 +39,7 @@ public class Variables.TemplatesViewModel : GLib.Object {
         //  other_variables["title"] = "Hello World";
 
         var other_variables = new Gee.ArrayList<Variables.Variable>.wrap ({
-            new Variables.Variable () { 
+            new Variables.Variable () {
                 name = "title",
                 value = "Hello World"
             },

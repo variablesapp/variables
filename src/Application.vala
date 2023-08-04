@@ -58,6 +58,14 @@ public class Variables.Application : Gtk.Application {
         }
 
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
+        var db_service = new Variables.DatabaseService ();
+
+        try {
+            db_service.init ();
+
+        } catch (Error err) {
+            error ("%s", err.message);
+        }
     }
 }
 
